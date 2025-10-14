@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to bottom, #333, #555);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-image: linear-gradient(to bottom, #555, #333);
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        header nav ul li {
+            margin-right: 20px;
+        }
+        
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+        
+        section {
+            background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+            padding: 2em;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        button {
+            background-image: linear-gradient(to bottom, #333, #555);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-image: linear-gradient(to bottom, #555, #333);
+        }
+        
+        /* Rewards Catalog Styles */
+        #rewards ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #rewards li {
+            margin-bottom: 20px;
+        }
+        
+        #rewards h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        #rewards button {
+            background-image: linear-gradient(to bottom, #333, #555);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        #rewards button:hover {
+            background-image: linear-gradient(to bottom, #555, #333);
+        }
+        
+        /* Leaderboard Styles */
+        #leaderboard table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        #leaderboard th, #leaderboard td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        #leaderboard th {
+            background-color: #f0f0f0;
+        }
+        
+        /* Futuristic Styles */
+        body {
+            background-image: linear-gradient(to bottom, #333, #555);
+        }
+        
+        header {
+            background-image: linear-gradient(to bottom, #555, #333);
+        }
+        
+        main {
+            background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+        }
+        
+        section {
+            background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+        }
+        
+        button {
+            background-image: linear-gradient(to bottom, #333, #555);
+        }
+        
+        button:hover {
+            background-image: linear-gradient(to bottom, #555, #333);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#rewards">Rewards</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h1>Welcome to the Rewards System</h1>
+            <p>Earn points and badges for completing tasks and achieving milestones.</p>
+            <button id="get-started-btn">Get Started</button>
+        </section>
+        <section id="rewards">
+            <h1>Rewards Catalog</h1>
+            <ul id="rewards-list">
+                <li>
+                    <h2>Badge 1</h2>
+                    <p>Description of Badge 1</p>
+                    <button class="claim-badge-btn">Claim Badge</button>
+                </li>
+                <li>
+                    <h2>Badge 2</h2>
+                    <p>Description of Badge 2</p>
+                    <button class="claim-badge-btn">Claim Badge</button>
+                </li>
+            </ul>
+        </section>
+        <section id="leaderboard">
+            <h1>Leaderboard</h1>
+            <table id="leaderboard-table">
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jane Doe</td>
+                    <td>800</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Rewards System</p>
+    </footer>
+    <script>
+        // Get Started Button Event Listener
+        document.getElementById("get-started-btn").addEventListener("click", function() {
+            alert("Welcome to the Rewards System! You can start earning points and badges now.");
+        });
+        
+        // Claim Badge Button Event Listeners
+        var claimBadgeBtns = document.getElementsByClassName("claim-badge-btn");
+        for (var i = 0; i < claimBadgeBtns.length; i++) {
+            claimBadgeBtns[i].addEventListener("click", function() {
+                alert("Badge claimed! You have earned 100 points.");
+            });
+        }
+        
+        // Leaderboard Table Sorting
+        var leaderboardTable = document.getElementById("leaderboard-table");
+        var rows = leaderboardTable.rows;
+        var sorted = false;
+        
+        // Sort by Points
+        leaderboardTable.addEventListener("click", function(event) {
+            if (event.target.tagName === "TH") {
+                if (!sorted) {
+                    for (var i = 1; i < rows.length; i++) {
+                        for (var j = i + 1; j < rows.length; j++) {
+                            if (parseInt(rows[i].cells[2].textContent) < parseInt(rows[j].cells[2].textContent)) {
+                                rows[i].parentNode.insertBefore(rows[j], rows[i]);
+                            }
+                        }
+                    }
+                    sorted = true;
+                } else {
+                    for (var i = 1; i < rows.length; i++) {
+                        for (var j = i + 1; j < rows.length; j++) {
+                            if (parseInt(rows[i].cells[2].textContent) > parseInt(rows[j].cells[2].textContent)) {
+                                rows[i].parentNode.insertBefore(rows[j], rows[i]);
+                            }
+                        }
+                    }
+                    sorted = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+

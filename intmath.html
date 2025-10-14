@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12th Grade Math Mini-Games</title>
+    <style>
+        :root {
+            --primary-color: #00f2fe;
+            --secondary-color: #4facfe;
+            --accent-color: #7d2ae8;
+            --dark-bg: #0a1128;
+            --light-text: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .game-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem;
+            margin-top: 1rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .score {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .answer-input {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+    </style>
+    <script>
+        let score = 0;
+        let questions = {
+            calculus: [
+                { question: "What is the derivative of x^2?", answer: "2x" },
+                { question: "What is the integral of 2x?", answer: "x^2 + C" },
+                { question: "What is the derivative of sin(x)?", answer: "cos(x)" }
+            ],
+            trigonometry: [
+                { question: "What is sin(30°)?", answer: "0.5" },
+                { question: "What is cos(60°)?", answer: "0.5" },
+                { question: "What is tan(45°)?", answer: "1" }
+            ],
+            algebra: [
+                { question: "Solve for x: 3x - 5 = 10", answer: "5" },
+                { question: "Factorize: x^2 - 4", answer: "(x-2)(x+2)" },
+                { question: "Solve for x: 2x + 3 = 7", answer: "2" }
+            ]
+        };
+        
+        function startGame(type) {
+            let questionIndex = Math.floor(Math.random() * questions[type].length);
+            let selectedQuestion = questions[type][questionIndex];
+            
+            document.getElementById("question").innerText = selectedQuestion.question;
+            document.getElementById("question").dataset.answer = selectedQuestion.answer;
+            document.getElementById("answer-section").style.display = "block";
+        }
+        
+        function checkAnswer() {
+            let userAnswer = document.getElementById("answer-input").value.trim();
+            let correctAnswer = document.getElementById("question").dataset.answer;
+            
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                score += 20;
+                alert("Correct! +20 points");
+            } else {
+                alert(`Incorrect! The correct answer is ${correctAnswer}.`);
+            }
+            document.getElementById("score").innerText = `Score: ${score}`;
+            document.getElementById("answer-input").value = "";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>12th Grade Math Mini-Games</h2>
+        <p>Test your calculus, trigonometry, and algebra skills while earning points!</p>
+
+        <div class="game-box">
+            <h3>Calculus Challenge</h3>
+            <p>Answer derivative and integral problems.</p>
+            <button class="btn" onclick="startGame('calculus')">Start Calculus Game</button>
+        </div>
+
+        <div class="game-box">
+            <h3>Trigonometry Quiz</h3>
+            <p>Test your knowledge of trigonometric functions.</p>
+            <button class="btn" onclick="startGame('trigonometry')">Start Trigonometry Game</button>
+        </div>
+
+        <div class="game-box">
+            <h3>Algebra Solver</h3>
+            <p>Solve algebraic equations quickly.</p>
+            <button class="btn" onclick="startGame('algebra')">Start Algebra Game</button>
+        </div>
+
+        <div id="answer-section" style="display: none;">
+            <p class="question" id="question"></p>
+            <input type="text" id="answer-input" class="answer-input" placeholder="Type your answer here">
+            <button class="btn" onclick="checkAnswer()">Submit Answer</button>
+        </div>
+
+        <div class="score" id="score">Score: 0</div>
+    </div>
+</body>
+</html>

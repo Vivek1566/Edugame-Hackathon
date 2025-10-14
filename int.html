@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Flashcards & Mini-Games</title>
+    <style>
+        :root {
+            --primary-color: #00f2fe;
+            --secondary-color: #4facfe;
+            --accent-color: #7d2ae8;
+            --dark-bg: #0a1128;
+            --light-text: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .flashcard {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem;
+            margin-top: 1rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .score {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+        }
+    </style>
+    <script>
+        let flashcards = [
+            { word: "Serendipity", meaning: "The occurrence of events by chance in a happy way." },
+            { word: "Ephemeral", meaning: "Lasting for a very short time." },
+            { word: "Resilient", meaning: "Able to withstand or recover quickly from difficulties." }
+        ];
+
+        let currentCard = 0;
+        let score = 0;
+
+        function showMeaning() {
+            document.getElementById("meaning").classList.toggle("hidden");
+        }
+
+        function nextCard() {
+            currentCard = (currentCard + 1) % flashcards.length;
+            document.getElementById("word").innerText = flashcards[currentCard].word;
+            document.getElementById("meaning").innerText = flashcards[currentCard].meaning;
+            document.getElementById("meaning").classList.add("hidden");
+        }
+
+        function correctAnswer() {
+            score += 10;
+            document.getElementById("score").innerText = `Score: ${score}`;
+            nextCard();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Vocabulary Flashcards & Mini-Games</h2>
+        <p>Improve your vocabulary while earning points!</p>
+
+        <div class="flashcard" onclick="showMeaning()">
+            <h3 id="word">Serendipity</h3>
+            <p id="meaning" class="hidden">The occurrence of events by chance in a happy way.</p>
+        </div>
+
+        <button class="btn" onclick="correctAnswer()">Got it Right!</button>
+        <button class="btn" onclick="nextCard()">Next Card</button>
+
+        <div class="score" id="score">Score: 0</div>
+    </div>
+</body>
+</html>
